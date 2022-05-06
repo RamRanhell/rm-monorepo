@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 //ARREGLO DE DATOS (FAKE-DUMMY)
 const products = [{
     id:'54f6d4s65',
-    name: 'fideos',
+    name: 'Product',
     price: 99.90
 }];
 
@@ -26,14 +26,14 @@ const registry = new client.Registry();
 //CREA UNA METRICA DE TIPO COUNTER
 const counter = new client.Counter({
   name: 'aggregated_products',
-  help: 'The total de productos agregados',
+  help: 'The total of added products',
   labelNames: ['product_add']
 });
 
-//CREA OTRA METICA DE TIPO COUNTER
+//CREA OTRA METRICA DE TIPO COUNTER
 const apiCallsCounter = new client.Counter({
     name: 'api_calls',
-    help: 'Total de peticiones a la api'
+    help: 'Total of API REquests'
 });
 
 //REGISTRA METRICA EN EL REGISTRY
@@ -57,7 +57,7 @@ client.collectDefaultMetrics({
 //ESTO ES UNA PETICION HTTP GET EN EL ROOT
 app.get('/', function (req, res) {
     apiCallsCounter.inc();
-    res.send('Tooly Fans Products API');
+    res.send('Products API');
 })
 
 //ESTO ES UNA PETICION HTTP GET
@@ -99,7 +99,7 @@ app.get('/metrics', async (req, res) => {
 
 //app.listen(3001)
 const server = app.listen(port, () => {
-    console.log(`tooly-fans products-api listening on port ${port}!`)
+    console.log(`products-api listening on port ${port}!`)
   })
   
   process.on('SIGTERM', () => {
